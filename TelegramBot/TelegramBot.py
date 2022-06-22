@@ -5,7 +5,7 @@ from .Handlers import *
 
 
 class TelegramBot:
-
+    """Запуск обработчиков"""
     StartBot.start_handler(BotSetup.dp)
     HelpComma.help_handler(BotSetup.dp)
     ChooseMethod.choose_handler(BotSetup.dp)

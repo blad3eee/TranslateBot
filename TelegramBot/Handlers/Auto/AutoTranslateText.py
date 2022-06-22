@@ -4,6 +4,7 @@ from TelegramBot.States.AutoMessageGet import AutoMessageGet
 
 
 class AutoTranslateText:
+    """Обработчик функции 'Автоопределение'"""
     @staticmethod
     async def autotranslate(message: types.Message):
         values_list = ['Назад в меню']

@@ -4,6 +4,7 @@ from TelegramBot.States.MessageGet import MessageGet
 
 
 class TranslateText:
+    """Обработчик события 'Ввести вручную'"""
     @staticmethod
     async def translate(message: types.Message):
         values_list = ['Назад в меню']

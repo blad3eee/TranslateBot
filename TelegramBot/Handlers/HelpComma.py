@@ -2,6 +2,7 @@ from aiogram import types, Dispatcher
 
 
 class HelpComma:
+    """Обработчик команды /help"""
     @staticmethod
     async def help(message: types.Message):
         await message.answer(f'Я бот-переводчик\n'

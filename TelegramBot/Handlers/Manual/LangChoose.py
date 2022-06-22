@@ -3,9 +3,10 @@ from TelegramBot.States.MessageGet import MessageGet
 from aiogram.dispatcher import FSMContext
 
 
-class EndLangChoose:
+class LangChoose:
+    """Выбор искомого языка"""
     @staticmethod
-    async def setendlang(message: types.Message, state: FSMContext):
+    async def setlang(message: types.Message, state: FSMContext):
         if message.text == 'Назад в меню':
             await state.finish()
             values_list = ['Автоопределение', 'Ввести вручную', 'Назад']
@@ -14,10 +15,10 @@ class EndLangChoose:
             await message.answer(f'Как будем переводить?', reply_markup=keyboard)
         else:
             async with state.proxy() as data:
-                data['end'] = message.text
+                data['source'] = message.text
             await MessageGet.next()
-            await message.answer('Введите текст, который необходимо перевести')
+            await message.answer('Введите язык, на который необходимо перевести текст')
 
     @staticmethod
-    def endlang_handler(dp: Dispatcher):
-        dp.register_message_handler(EndLangChoose.setendlang, state=MessageGet.endlang)
+    def setlang_handler(dp: Dispatcher):
+        dp.register_message_handler(LangChoose.setlang, state=MessageGet.sourcelang)

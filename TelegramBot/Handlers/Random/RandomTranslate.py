@@ -6,6 +6,7 @@ import aiohttp
 
 
 class RandomTranslate:
+    """Обработчик команды 'Случайное слово'"""
     @staticmethod
     async def random_word(message: types.Message):
         values_list = ['Перевод', 'Случайное слово']

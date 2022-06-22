@@ -1,11 +1,12 @@
 from aiogram import types, Dispatcher
-from TelegramBot.States.AutoMessageGet import AutoMessageGet
+from TelegramBot.States.MessageGet import MessageGet
 from aiogram.dispatcher import FSMContext
 
 
-class AutoEndLangChoose:
+class EndLangChoose:
+    """Выбор языка перевода"""
     @staticmethod
-    async def autosetendlang(message: types.Message, state: FSMContext):
+    async def setendlang(message: types.Message, state: FSMContext):
         if message.text == 'Назад в меню':
             await state.finish()
             values_list = ['Автоопределение', 'Ввести вручную', 'Назад']
@@ -15,9 +16,9 @@ class AutoEndLangChoose:
         else:
             async with state.proxy() as data:
                 data['end'] = message.text
-            await AutoMessageGet.next()
+            await MessageGet.next()
             await message.answer('Введите текст, который необходимо перевести')
 
     @staticmethod
-    def autoendlang_handler(dp: Dispatcher):
-        dp.register_message_handler(AutoEndLangChoose.autosetendlang, state=AutoMessageGet.endlang)
+    def endlang_handler(dp: Dispatcher):
+        dp.register_message_handler(EndLangChoose.setendlang, state=MessageGet.endlang)

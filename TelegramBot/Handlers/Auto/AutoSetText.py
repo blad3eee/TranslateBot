@@ -6,6 +6,7 @@ import aiohttp
 
 
 class AutoSetText:
+    """Ввод текста для перевода"""
     @staticmethod
     async def autosettext(message: types.Message, state: FSMContext):
         if message.text == 'Назад в меню':
